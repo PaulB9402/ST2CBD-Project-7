@@ -1,0 +1,15 @@
+services:
+  zookeeper:
+    container_name: myzookeeper
+    image: zookeeper
+    ports:
+      - "2181:2181"
+    restart: always
+
+  kafka:
+    container_name: mykafkaserver
+    image: apache/kafka
+    ports:
+      - "9092:9092"
+    links:
+      - zookeeper

@@ -1,68 +1,54 @@
-import random
-import pandas as pd
-from bokeh.driving import count
-from bokeh.models import ColumnDataSource
-from kafka import KafkaConsumer
-from bokeh.plotting import curdoc, figure
-from bokeh.models import DatetimeTickFormatter
-from bokeh.models.widgets import Div
-from bokeh.layouts import column,row
-import ast
-import time
-import pytz
-from datetime import datetime
+from flask import Flask, render_template
+from bokeh.plotting import figure
+from bokeh.embed import components
+from bokeh.resources import CDN
+from bokeh.models import ColumnDataSource, HoverTool
+from pymongo import MongoClient
 
-tz = pytz.timezone('Asia/Calcutta')
+app = Flask(__name__)
 
 
-UPDATE_INTERVAL = 1000
-ROLLOVER = 10 # Number of displayed data points
+@app.route('/')
+def index():
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client["natone_db"]
+    collection = db["transactions"]
+
+    # Fetch data from MongoDB
+    transactions = list(collection.find())
+
+    # Prepare data for Bokeh
+    source = ColumnDataSource(data={
+        'TransactionNo': [t['TransactionNo'] for t in transactions],
+        'Date': [t['Date'] for t in transactions],
+        'Price': [t['Price'] for t in transactions],
+        'Quantity': [t['Quantity'] for t in transactions],
+        'CustomerNo': [t['CustomerNo'] for t in transactions],
+        'Country': [t['Country'] for t in transactions]
+    })
+
+    # Create a Bokeh plot
+    p = figure(title="NatOne Transactions", x_axis_label="Transaction No", y_axis_label="Price")
+    p.scatter(x='TransactionNo', y='Price', source=source, size=10, color="blue", alpha=0.5)  # Use scatter()
+
+    # Add hover tool
+    hover = HoverTool(tooltips=[
+        ("Transaction No", "@TransactionNo"),
+        ("Date", "@Date"),
+        ("Price", "@Price"),
+        ("Quantity", "@Quantity"),
+        ("CustomerNo", "@CustomerNo"),
+        ("Country", "@Country")
+    ])
+    p.add_tools(hover)
+
+    # Embed Bokeh plot in HTML
+    script, div = components(p)
+    cdn_js = CDN.js_files
+    cdn_css = CDN.css_files
+
+    return render_template('index.html', script=script, div=div, cdn_js=cdn_js, cdn_css=cdn_css)
 
 
-source = ColumnDataSource({"x": [], "y": []})
-consumer = KafkaConsumer('CleanSensorData', auto_offset_reset='earliest',bootstrap_servers=['localhost:9092'], consumer_timeout_ms=1000)
-div = Div(
-    text='',
-    width=120,
-    height=35
-)
-
-
-
-@count()
-def update(x):
-    for msg in consumer:
-        msg_value=msg
-        break
-    values=ast.literal_eval(msg_value.value.decode("utf-8"))
-    x=((values["TimeStamp"]["$date"])/1000.0)
-    x=datetime.fromtimestamp(x, tz).isoformat()
-    x=pd.to_datetime(x)
-   
-    print(x)
-
-    div.text = "TimeStamp: "+str(x)
-
-
-    y = values['WaterTemperature']
-    print(y)
-    
-    source.stream({"x": [x], "y": [y]},ROLLOVER)
-
-p = figure(title="Water Temperature Sensor Data",x_axis_type = "datetime",plot_width=1000)
-p.line("x", "y", source=source)
-
-p.xaxis.formatter=DatetimeTickFormatter(hourmin = ['%H:%M'])
-p.xaxis.axis_label = 'Time'
-p.yaxis.axis_label = 'Value'
-p.title.align = "right"
-p.title.text_color = "orange"
-p.title.text_font_size = "25px"
-
-doc = curdoc()
-#doc.add_root(p)
-
-doc.add_root(
-    row(children=[div,p])
-)
-doc.add_periodic_callback(update, UPDATE_INTERVAL)
+if __name__ == '__main__':
+    app.run(debug=True)
