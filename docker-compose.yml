@@ -1,3 +1,4 @@
+version: '3'
 services:
   zookeeper:
     container_name: myzookeeper
@@ -13,3 +14,24 @@ services:
       - "9092:9092"
     links:
       - zookeeper
+
+  spark:
+    container_name: myspark
+    image: bitnami/spark
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    volumes:
+      - ./:/app
+    links:
+      - kafka
+      - zookeeper
+    user: root
+    command: bash -c "
+      useradd -ms /bin/bash newuser &&
+      mkdir -p /opt/bitnami/.cache/pip &&
+      chown -R newuser:newuser /opt/bitnami/.cache/pip &&
+      su newuser -c '
+      /opt/bitnami/spark/bin/spark-class org.apache.spark.deploy.master.Master
+      '
+     "

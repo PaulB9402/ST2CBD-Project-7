@@ -23,7 +23,7 @@ schema = StructType([
 ])
 
 kafka_df = spark.readStream.format("kafka") \
-    .option("kafka.bootstrap.servers", "localhost:9092") \
+    .option("kafka.bootstrap.servers", "172.19.0.3:9092") \
     .option("subscribe", "transactions") \
     .load()
 

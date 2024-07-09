@@ -9,7 +9,7 @@ conf = {
     'client.id': 'my-producer'
 }
 producer = Producer(conf)
-topic_name = 'raw_csv_data'
+topic_name = 'transactions'
 
 # CSV Dataset Path (replace with your actual path)
 file_path = r'C:\Users\super\Documents\GitHub\ST2CBD-Project-7\transactions.csv'
