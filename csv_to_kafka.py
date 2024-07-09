@@ -5,7 +5,7 @@ import tqdm
 
 # Kafka Configuration
 conf = {
-    'bootstrap.servers': 'localhost:9092',
+    'bootstrap.servers': '172.19.0.3:9092',
     'client.id': 'my-producer'
 }
 producer = Producer(conf)

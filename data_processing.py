@@ -26,10 +26,22 @@ kafka_df = spark.readStream.format("kafka") \
     .option("kafka.bootstrap.servers", "172.19.0.3:9092") \
     .option("subscribe", "transactions") \
     .load()
-
+print(kafka_df.printSchema())
+'''
 transactions_df = kafka_df.selectExpr("CAST(value AS STRING) as json").select(
     from_json(col("json"), schema).alias("data")).select("data.*")
+print(transactions_df.printSchema())
+'''
 
+query = kafka_df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)") \
+    .writeStream \
+    .format("console") \
+    .option("checkpointLocation", "/root/kafka-data") \
+    .start()
+
+query.awaitTermination()
+
+err
 '''
 # Transformation Logic
 transformed_df = transactions_df \
