@@ -5,19 +5,18 @@ import tqdm
 
 # Kafka Configuration
 conf = {
-    'bootstrap.servers': '172.19.0.3:9092',
+    'bootstrap.servers': 'localhost:9092',  # Updated to use local Kafka broker
     'client.id': 'my-producer'
 }
 producer = Producer(conf)
 topic_name = 'transactions'
 
 # CSV Dataset Path (replace with your actual path)
-file_path = r'C:\Users\super\Documents\GitHub\ST2CBD-Project-7\transactions.csv'
+file_path = r'C:\Users\drnru\OneDrive\Documents\GitHub\ST2CBD-Project-7\transactions.csv'
 
 # Batch Size and Row Limit
 batch_size = 100
 row_limit = 10000
-
 
 # Callback function for delivery reports
 def delivery_report(err, msg):
@@ -25,7 +24,6 @@ def delivery_report(err, msg):
         print(f'Message delivery failed: {err}')
     else:
         print(f'Message delivered to {msg.topic()} [{msg.partition()}]')
-
 
 # Read CSV in chunks (limiting to 10000 rows)
 total_rows_sent = 0
