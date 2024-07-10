@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3297ba0b-7d4e-45d1-a03f-c29f998f8bcc" name="Changes" comment=";;;">
-      <change afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db.env" afterDir="false" />
+    <list default="true" id="3297ba0b-7d4e-45d1-a03f-c29f998f8bcc" name="Changes" comment="HADOOP yomo">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0483d9fd-47d1-440a-ac3a-72771a288b36.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0483d9fd-47d1-440a-ac3a-72771a288b36.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0483d9fd-47d1-440a-ac3a-72771a288b36/storage_v2/_src_/database/ST2CBD.NLBZkg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0483d9fd-47d1-440a-ac3a-72771a288b36/storage_v2/_src_/database/ST2CBD.NLBZkg/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consumer.py" beforeDir="false" afterPath="$PROJECT_DIR$/consumer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kafka_to_postgres.py" beforeDir="false" afterPath="$PROJECT_DIR$/kafka_to_postgres.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres-data/global/pg_control" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-data/global/pg_control" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres-data/pg_wal/000000010000000000000001" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-data/pg_wal/000000010000000000000001" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres-data/postmaster.pid" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-data/postmaster.pid" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,38 +66,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.docker-compose.yml.postgres: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "Python.consumer.executor": "Run",
-    "Python.csv_to_kafka.executor": "Run",
-    "Python.dashboard.executor": "Run",
-    "Python.data_processing.executor": "Run",
-    "Python.database.executor": "Run",
-    "Python.kafka_to_postgres.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "dorian",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.docker-compose.yml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Flask server.ST2CBD-Project-7.executor&quot;: &quot;Run&quot;,
+    &quot;Python.consumer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.csv_to_kafka.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dashboard.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_processing.executor&quot;: &quot;Run&quot;,
+    &quot;Python.database.executor&quot;: &quot;Run&quot;,
+    &quot;Python.kafka_to_postgres.executor&quot;: &quot;Run&quot;,
+    &quot;Python.zegzegze.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dorian&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\drnru\OneDrive\Documents\GitHub\ST2CBD-Project-7\" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Flask server.ST2CBD-Project-7">
     <configuration name="data_processing" type="PySparkSubmitConfigurationType" factoryName="ClusterSparkJobConfigurationType" show_console_on_std_err="false" show_console_on_std_out="false">
       <option name="allowRunningInParallel" value="false" />
       <option name="archives">
@@ -101,6 +109,109 @@
       <option name="artifactPath">
         <FilePath>
           <option name="path" value="$PROJECT_DIR$/data_processing.py" />
+          <option name="type" value="upload" />
+        </FilePath>
+      </option>
+      <option name="beforeShellScript" value="" />
+      <option name="className" value="" />
+      <option name="clusterManager" value="LOCAL" />
+      <option name="clusterManagerDeployModeDefault" value="true" />
+      <option name="conf" value="" />
+      <option name="debugDriverEnable" value="true" />
+      <option name="debugDriverPort" />
+      <option name="debugDriverSuspend" />
+      <option name="deployMode" value="CLIENT" />
+      <option name="driverClassPath">
+        <list />
+      </option>
+      <option name="driverCores" value="" />
+      <option name="driverJavaOptions" value="" />
+      <option name="driverLibraryPath">
+        <list />
+      </option>
+      <option name="driverMemory" value="" />
+      <option name="envParams" value="" />
+      <option name="excludePackages" value="" />
+      <option name="executorCores" value="" />
+      <option name="executorMemory" value="" />
+      <option name="files">
+        <list />
+      </option>
+      <option name="interactive" value="false" />
+      <option name="jars">
+        <list />
+      </option>
+      <option name="keytab">
+        <FilePath>
+          <option name="path" value="" />
+          <option name="type" value="" />
+        </FilePath>
+      </option>
+      <option name="master" value="local" />
+      <option name="numExecutors" value="" />
+      <option name="packages" value="" />
+      <option name="principal" value="" />
+      <option name="projectPathOnTarget" />
+      <option name="propertiesFile">
+        <FilePath>
+          <option name="path" value="" />
+          <option name="type" value="" />
+        </FilePath>
+      </option>
+      <option name="proxyUser" value="" />
+      <option name="pyFiles">
+        <list />
+      </option>
+      <option name="queue" value="" />
+      <option name="remoteTargetId" />
+      <option name="repositories" value="" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="shellExecutor" value="/bin/bash" />
+      <option name="sparkHome" value="" />
+      <option name="sparkMonitoringDriverId" value="" />
+      <option name="supervise" value="false" />
+      <option name="targetDirectory">
+        <FilePath>
+          <option name="path" value="" />
+          <option name="type" value="server" />
+        </FilePath>
+      </option>
+      <option name="template" value="false" />
+      <option name="totalExecutorCores" value="" />
+      <option name="verbose" value="false" />
+      <option name="visibleBlocks">
+        <map>
+          <entry key="SPARK_CONFIG" value="false" />
+          <entry key="DEPENDENCIES" value="false" />
+          <entry key="MAVEN_DEPENDENCIES" value="false" />
+          <entry key="DRIVER" value="false" />
+          <entry key="EXECUTOR" value="false" />
+          <entry key="KERBEROS" value="false" />
+          <entry key="ADDITIONAL" value="false" />
+          <entry key="SHELL_OPTIONS" value="false" />
+        </map>
+      </option>
+      <option name="workDirectoryPath">
+        <FilePath>
+          <option name="path" value="" />
+          <option name="type" value="server" />
+        </FilePath>
+      </option>
+      <method v="2">
+        <option name="SftpSparkFileUpload" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="zegzegze" type="PySparkSubmitConfigurationType" factoryName="ClusterSparkJobConfigurationType" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="archives">
+        <list />
+      </option>
+      <option name="artifactArgs" value="" />
+      <option name="artifactPath">
+        <FilePath>
+          <option name="path" value="$PROJECT_DIR$/zegzegze.py" />
           <option name="type" value="upload" />
         </FilePath>
       </option>
@@ -242,12 +353,13 @@
       <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       <item itemvalue="Flask server.ST2CBD-Project-7" />
+      <item itemvalue="PySpark.zegzegze" />
       <item itemvalue="PySpark.data_processing" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -273,6 +385,10 @@
       <workItem from="1720604645573" duration="53000" />
       <workItem from="1720604774617" duration="9968000" />
       <workItem from="1720620900749" duration="2036000" />
+      <workItem from="1720630218068" duration="1369000" />
+      <workItem from="1720638213793" duration="2292000" />
+      <workItem from="1720640553799" duration="1055000" />
+      <workItem from="1720641962195" duration="340000" />
     </task>
     <task id="LOCAL-00001" summary=";;;">
       <option name="closed" value="true" />
@@ -282,22 +398,34 @@
       <option name="project" value="LOCAL" />
       <updated>1720619197398</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="HADOOP yomo">
+      <option name="closed" value="true" />
+      <created>1720639647948</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1720639647948</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="efzefzegzeg&#10;&#10;producer,consumer (spark no spark) + dashboard (qui marche pas trop)" />
     <MESSAGE value=";;;" />
-    <option name="LAST_COMMIT_MESSAGE" value=";;;" />
+    <MESSAGE value="HADOOP yomo" />
+    <option name="LAST_COMMIT_MESSAGE" value="HADOOP yomo" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ST2CBD_Project_7$csv_to_kafka.coverage" NAME="csv_to_kafka Coverage Results" MODIFIED="1720621590524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ST2CBD_Project_7$zegzegze.coverage" NAME="zegzegze Coverage Results" MODIFIED="1720638235275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ST2CBD_Project_7$csv_to_kafka.coverage" NAME="csv_to_kafka Coverage Results" MODIFIED="1720640884852" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ST2CBD_Project_7$dashboard.coverage" NAME="dashboard Coverage Results" MODIFIED="1720618561868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ST2CBD_Project_7$database.coverage" NAME="database Coverage Results" MODIFIED="1720621023817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ST2CBD_Project_7$kafka_to_postgres.coverage" NAME="kafka_to_postgres Coverage Results" MODIFIED="1720622871920" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ST2CBD_Project_7$kafka_to_postgres.coverage" NAME="kafka_to_postgres Coverage Results" MODIFIED="1720640656425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ST2CBD_Project_7$data_processing.coverage" NAME="data_processing Coverage Results" MODIFIED="1720604888182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ST2CBD_Project_7$consumer.coverage" NAME="consumer Coverage Results" MODIFIED="1720618121279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ST2CBD_Project_7$consumer.coverage" NAME="consumer Coverage Results" MODIFIED="1720640160727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ST2CBD_Project_7$ST2CBD_Project_7.coverage" NAME="ST2CBD-Project-7 Coverage Results" MODIFIED="1720640628571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

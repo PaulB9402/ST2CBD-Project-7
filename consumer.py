@@ -20,7 +20,7 @@ conf = {
 
 # Schema Registry Configuration (Optional)
 schema_registry_conf = {
-    'url': 'http://localhost:8081'  # Replace with your schema registry URL if using one
+    'url': 'http://localhost:8081'
 }
 schema_registry_client = SchemaRegistryClient(schema_registry_conf)
 
