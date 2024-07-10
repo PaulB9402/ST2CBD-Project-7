@@ -1,87 +1,86 @@
-import os
-import threading
-import time
-import json
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import from_json, col
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
+import psycopg2
 
-from dotenv import load_dotenv
-from psycopg2 import sql
-from kafka import KafkaConsumer
+# Initialize Spark Session
+spark = SparkSession.builder \
+    .appName("KafkaSparkStreaming") \
+    .getOrCreate()
 
-from database import DatabaseHandler
+# PostgreSQL Configuration
+POSTGRES_URL = "jdbc:postgresql://localhost:5432/ST2CBD"
+POSTGRES_USER = "postgres"
+POSTGRES_PASSWORD = "1234"
+POSTGRES_TABLE = "transactions_aggregated"
 
-# Load environment variables from the .env file
-load_dotenv()
+# Define the schema of the JSON data
+schema = StructType([
+    StructField("TransactionNo", StringType(), True),
+    StructField("ProductNo", StringType(), True),
+    StructField("ProductName", StringType(), True),
+    StructField("Price", FloatType(), True),
+    StructField("Quantity", IntegerType(), True),
+    StructField("CustomerNo", StringType(), True),
+    StructField("Country", StringType(), True),
+    StructField("Date", StringType(), True)
+])
 
-# Get environment variables with defaults
-dbname = os.getenv('POSTGRES_DB', 'ST2CBD')
-user = os.getenv('POSTGRES_USER', 'postgres')
-password = os.getenv('POSTGRES_PASSWORD', '1234')
-host = os.getenv('POSTGRES_HOST', 'localhost')
-port = int(os.getenv('POSTGRES_PORT', 5432))
+# Read data from Kafka
+df = spark.readStream \
+    .format("kafka") \
+    .option("kafka.bootstrap.servers", "localhost:9092") \
+    .option("subscribe", "transactions") \
+    .option("startingOffsets", "earliest") \
+    .load()
 
-# Print the environment variables to debug
-print(f"POSTGRES_DB: {dbname}")
-print(f"POSTGRES_USER: {user}")
-print(f"POSTGRES_PASSWORD: {password}")
-print(f"POSTGRES_HOST: {host}")
-print(f"POSTGRES_PORT: {port}")
+# Deserialize JSON data
+df = df.selectExpr("CAST(value AS STRING) as json")
+df = df.select(from_json(col("json"), schema).alias("data")).select("data.*")
 
-consumer = KafkaConsumer(
-    'transactions',
-    bootstrap_servers='localhost:9092',
-    auto_offset_reset='earliest',
-    enable_auto_commit=True,
-    group_id='transactions-consumers',
-    value_deserializer=lambda x: json.loads(x.decode('utf-8'))
-)
 
-# Initialize DatabaseHandler with environment variables
-db_handler = DatabaseHandler(
-    dbname=dbname,
-    user=user,
-    password=password,
-    host=host,
-    port=port
-)
+# Function to write each batch to PostgreSQL
+def foreach_batch_function(df, epoch_id):
+    # Convert DataFrame to Pandas
+    pandas_df = df.toPandas()
 
-# Dictionary to store transaction statistics
-transaction_stats = {}
+    # Connect to PostgreSQL
+    conn = psycopg2.connect(
+        dbname="ST2CBD",
+        user=POSTGRES_USER,
+        password=POSTGRES_PASSWORD,
+        host="localhost",
+        port="5432"
+    )
+    cur = conn.cursor()
 
-def process_transaction(transaction, db_handler):
-    try:
-        product_no = transaction["ProductNo"]
-        if product_no not in transaction_stats:
-            transaction_stats[product_no] = {"count": 0, "total_amount": 0}
+    # Insert data into PostgreSQL
+    for _, row in pandas_df.iterrows():
+        sql = """
+        INSERT INTO transactions_aggregated (TransactionNo, ProductNo, ProductName, Price, Quantity, CustomerNo, Country, Date) 
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s) 
+        ON CONFLICT (TransactionNo) DO UPDATE 
+        SET ProductName = EXCLUDED.ProductName,
+            Price = EXCLUDED.Price,
+            Quantity = EXCLUDED.Quantity,
+            CustomerNo = EXCLUDED.CustomerNo,
+            Country = EXCLUDED.Country,
+            Date = EXCLUDED.Date;
+        """
+        cur.execute(sql, (
+            row['TransactionNo'], row['ProductNo'], row['ProductName'],
+            row['Price'], row['Quantity'], row['CustomerNo'],
+            row['Country'], row['Date']
+        ))
+    conn.commit()
+    cur.close()
+    conn.close()
 
-        transaction_stats[product_no]["count"] += 1
-        transaction_stats[product_no]["total_amount"] += float(transaction["Amount"])
 
-        query = sql.SQL(
-            "INSERT INTO transactions (transaction_id, date, customer, product_no, amount) VALUES (%s, %s, %s, %s, %s)"
-        )
-        values = (
-            transaction["TransactionID"], transaction["Date"], transaction["Customer"],
-            transaction["ProductNo"], transaction["Amount"]
-        )
-        db_handler.execute_query(query, values)
-    except Exception as e:
-        print(f"Error processing transaction: {e}")
+# Write stream to PostgreSQL
+query = df.writeStream \
+    .foreachBatch(foreach_batch_function) \
+    .outputMode("update") \
+    .start()
 
-def display_stats():
-    while True:
-        print("\nCurrent Transaction Stats:")
-        for product_no, stats in transaction_stats.items():
-            print(f"Product {product_no}:")
-            print(f"Number of Transactions: {stats['count']}")
-            print(f"Total Amount: {stats['total_amount']}")
-        time.sleep(10)
-
-display_thread = threading.Thread(target=display_stats)
-display_thread.start()
-
-print("Starting Consumer...")
-
-for message in consumer:
-    transaction = message.value
-    print(f"Received transaction: {transaction}")
-    process_transaction(transaction, db_handler)
+query.awaitTermination()
