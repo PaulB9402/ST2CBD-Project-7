@@ -7,6 +7,7 @@ from bokeh.models import ColumnDataSource, DataTable, TableColumn
 from bokeh.io import curdoc
 from bokeh.server.server import Server
 import logging
+import sys
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -32,8 +33,8 @@ def fetch_data():
 df = fetch_data()
 
 # Verify if the required column exists
-if 'TransactionNo' not in df.columns:
-    logger.error("Required column 'TransactionNo' not found in the DataFrame")
+if 'transactionno' not in df.columns:
+    logger.error("Required column 'transactionno' not found in the DataFrame")
     sys.exit(1)
 
 # Prepare the data source for Bokeh
@@ -41,21 +42,21 @@ source = ColumnDataSource(df)
 
 # Create a Bokeh DataTable
 columns = [
-    TableColumn(field="TransactionNo", title="Transaction No"),
-    TableColumn(field="ProductNo", title="Product No"),
-    TableColumn(field="ProductName", title="Product Name"),
-    TableColumn(field="Price", title="Price"),
-    TableColumn(field="Quantity", title="Quantity"),
-    TableColumn(field="CustomerNo", title="Customer No"),
-    TableColumn(field="Country", title="Country"),
-    TableColumn(field="Date", title="Date"),
+    TableColumn(field="transactionno", title="Transaction No"),
+    TableColumn(field="productno", title="Product No"),
+    TableColumn(field="productname", title="Product Name"),
+    TableColumn(field="price", title="Price"),
+    TableColumn(field="quantity", title="Quantity"),
+    TableColumn(field="customerno", title="Customer No"),
+    TableColumn(field="country", title="Country"),
+    TableColumn(field="date", title="Date"),
 ]
 data_table = DataTable(source=source, columns=columns, width=800)
 
 # Create a simple plot
-p = figure(title="Transaction Prices", x_axis_label='TransactionNo', y_axis_label='Price', x_range=df["TransactionNo"].astype(str))
-p.line(x='TransactionNo', y='Price', source=source, line_width=2)
-p.circle(x='TransactionNo', y='Price', source=source, size=5, color="navy", alpha=0.5)
+p = figure(title="Transaction Prices", x_axis_label='Transaction No', y_axis_label='Price', x_range=df["transactionno"].astype(str))
+p.line(x='transactionno', y='price', source=source, line_width=2)
+p.circle(x='transactionno', y='price', source=source, size=5, color="navy", alpha=0.5)
 
 # Arrange plots and tables in a layout
 layout = column(data_table, p)

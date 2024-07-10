@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3297ba0b-7d4e-45d1-a03f-c29f998f8bcc" name="Changes" comment="çamarchepo :(">
-      <change afterPath="$PROJECT_DIR$/transactions_dashboard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka_to_postgres.py" beforeDir="false" afterPath="$PROJECT_DIR$/kafka_to_postgres.py" afterDir="false" />
+    <list default="true" id="3297ba0b-7d4e-45d1-a03f-c29f998f8bcc" name="Changes" comment=" csv">
+      <change beforePath="$PROJECT_DIR$/csv_to_kafka.py" beforeDir="false" afterPath="$PROJECT_DIR$/csv_to_kafka.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transactions_dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/transactions_dashboard.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -386,7 +384,7 @@
       <workItem from="1720638213793" duration="2292000" />
       <workItem from="1720640553799" duration="1055000" />
       <workItem from="1720641962195" duration="490000" />
-      <workItem from="1720642823449" duration="3231000" />
+      <workItem from="1720642823449" duration="3549000" />
     </task>
     <task id="LOCAL-00001" summary=";;;">
       <option name="closed" value="true" />
@@ -412,7 +410,23 @@
       <option name="project" value="LOCAL" />
       <updated>1720642350721</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="çamarche + csv">
+      <option name="closed" value="true" />
+      <created>1720646125936</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1720646125936</updated>
+    </task>
+    <task id="LOCAL-00005" summary=" csv">
+      <option name="closed" value="true" />
+      <created>1720646377204</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1720646377204</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,14 +437,16 @@
     <MESSAGE value=";;;" />
     <MESSAGE value="HADOOP yomo" />
     <MESSAGE value="çamarchepo :(" />
-    <option name="LAST_COMMIT_MESSAGE" value="çamarchepo :(" />
+    <MESSAGE value="çamarche + csv" />
+    <MESSAGE value=" csv" />
+    <option name="LAST_COMMIT_MESSAGE" value=" csv" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ST2CBD_Project_7$zegzegze.coverage" NAME="zegzegze Coverage Results" MODIFIED="1720638235275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ST2CBD_Project_7$csv_to_kafka.coverage" NAME="csv_to_kafka Coverage Results" MODIFIED="1720642438240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ST2CBD_Project_7$dashboard.coverage" NAME="dashboard Coverage Results" MODIFIED="1720618561868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ST2CBD_Project_7$dashboard.coverage" NAME="dashboard Coverage Results" MODIFIED="1720646203622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ST2CBD_Project_7$database.coverage" NAME="database Coverage Results" MODIFIED="1720621023817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ST2CBD_Project_7$transactions_dashboard.coverage" NAME="transactions_dashboard Coverage Results" MODIFIED="1720645975245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ST2CBD_Project_7$transactions_dashboard.coverage" NAME="transactions_dashboard Coverage Results" MODIFIED="1720646186700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ST2CBD_Project_7$kafka_to_postgres.coverage" NAME="kafka_to_postgres Coverage Results" MODIFIED="1720644386255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ST2CBD_Project_7$data_processing.coverage" NAME="data_processing Coverage Results" MODIFIED="1720604888182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ST2CBD_Project_7$ST2CBD_Project_7.coverage" NAME="ST2CBD-Project-7 Coverage Results" MODIFIED="1720640628571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

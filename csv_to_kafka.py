@@ -8,7 +8,6 @@ from kafka import KafkaProducer
 producer = KafkaProducer(bootstrap_servers='localhost:9092')
 topic_name = 'transactions'
 
-# CSV Dataset Path (replace with your actual path)
 file_path = r'C:\Users\drnru\Downloads\archive\my_e_commerce_data_set.csv'
 
 # Batch Size and Other Parameters
