@@ -9,10 +9,13 @@ import sys
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Initialize Spark Session
+# Initialize Spark Session with Kafka package
 try:
     spark = SparkSession.builder \
         .appName("KafkaSparkStreaming") \
+        .config("spark.jars.packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.1.2") \
+        .config("spark.hadoop.fs.defaultFS", "hdfs://localhost:9000") \
+        .config("spark.sql.warehouse.dir", "hdfs://localhost:9000/user/spark/warehouse") \
         .getOrCreate()
     logger.info("Spark Session created successfully")
 except Exception as e:
@@ -54,8 +57,6 @@ except Exception as e:
 df = df.selectExpr("CAST(value AS STRING) as json")
 df = df.select(from_json(col("json"), schema).alias("data")).select("data.*")
 
-
-# Function to write each batch to PostgreSQL
 def foreach_batch_function(df, epoch_id):
     try:
         pandas_df = df.toPandas()
@@ -94,12 +95,12 @@ def foreach_batch_function(df, epoch_id):
     except Exception as e:
         logger.error(f"Error processing batch: {e}")
 
-
 # Write stream to PostgreSQL
 try:
     query = df.writeStream \
         .foreachBatch(foreach_batch_function) \
         .outputMode("update") \
+        .option("checkpointLocation", "hdfs://localhost:9000/user/spark/checkpoints") \
         .start()
     logger.info("Streaming query started successfully")
     query.awaitTermination()
