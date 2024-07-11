@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3297ba0b-7d4e-45d1-a03f-c29f998f8bcc" name="Changes" comment=" dahsboard">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0483d9fd-47d1-440a-ac3a-72771a288b36.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0483d9fd-47d1-440a-ac3a-72771a288b36.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0483d9fd-47d1-440a-ac3a-72771a288b36/storage_v2/_src_/database/ST2CBD.NLBZkg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0483d9fd-47d1-440a-ac3a-72771a288b36/storage_v2/_src_/database/ST2CBD.NLBZkg/schema/public.abK9xQ.meta" afterDir="false" />
+    <list default="true" id="3297ba0b-7d4e-45d1-a03f-c29f998f8bcc" name="Changes" comment="last push, add a query for the dashboard">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv_to_kafka.py" beforeDir="false" afterPath="$PROJECT_DIR$/csv_to_kafka.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kafka_to_postgres.py" beforeDir="false" afterPath="$PROJECT_DIR$/kafka_to_postgres.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres-data/global/pg_control" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-data/global/pg_control" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres-data/pg_wal/000000010000000000000001" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-data/pg_wal/000000010000000000000001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres-data/postmaster.pid" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-data/postmaster.pid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transactions_dashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/transactions_dashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consumer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashboard.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sensor.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -392,7 +388,7 @@
       <workItem from="1720640553799" duration="1055000" />
       <workItem from="1720641962195" duration="490000" />
       <workItem from="1720642823449" duration="4637000" />
-      <workItem from="1720677545957" duration="7395000" />
+      <workItem from="1720677545957" duration="8493000" />
     </task>
     <task id="LOCAL-00001" summary=";;;">
       <option name="closed" value="true" />
@@ -442,7 +438,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720646582498</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="last push, add a query for the dashboard">
+      <option name="closed" value="true" />
+      <created>1720685709781</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1720685709781</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,7 +460,8 @@
     <MESSAGE value="çamarche + csv" />
     <MESSAGE value=" csv" />
     <MESSAGE value=" dahsboard" />
-    <option name="LAST_COMMIT_MESSAGE" value=" dahsboard" />
+    <MESSAGE value="last push, add a query for the dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="last push, add a query for the dashboard" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ST2CBD_Project_7$zegzegze.coverage" NAME="zegzegze Coverage Results" MODIFIED="1720638235275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
