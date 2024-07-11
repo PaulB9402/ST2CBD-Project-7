@@ -1,0 +1,27 @@
+services:
+  zookeeper:
+    container_name: myzookeeper
+    image: zookeeper
+    ports:
+      - "2181:2181"
+    restart: always
+
+  kafka:
+    container_name: mykafkaserver
+    image: apache/kafka
+    ports:
+      - "9092:9092"
+    links:
+      - zookeeper
+
+  postgres:
+    container_name: mypostgres
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: ST2CBD
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data

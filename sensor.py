@@ -16,9 +16,9 @@ def get_sensor_data():
     turbidity=str(round(random.uniform(1683.48, 0.0),2))
     battery_life=str(round(random.uniform(13.3,4.8),2))
     measurement_id=str(random.randint(10000,999999))
-    
+
     response=str(timestamp+" "+water_temperature+" "+turbidity+" "+battery_life+" "+beach+" "+measurement_id)
-    
+
     return Response(response, mimetype='text/plain')
 
 if __name__ == '__main__':

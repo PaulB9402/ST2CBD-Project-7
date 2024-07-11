@@ -1,68 +1,62 @@
 import random
 import pandas as pd
-from bokeh.driving import count
-from bokeh.models import ColumnDataSource
-from kafka import KafkaConsumer
 from bokeh.plotting import curdoc, figure
-from bokeh.models import DatetimeTickFormatter
+from bokeh.models import ColumnDataSource, DatetimeTickFormatter
 from bokeh.models.widgets import Div
-from bokeh.layouts import column,row
+from bokeh.layouts import column, row
+import json
 import ast
 import time
-import pytz
-from datetime import datetime
+from kafka import KafkaConsumer
 
-tz = pytz.timezone('Asia/Calcutta')
-
-
-UPDATE_INTERVAL = 1000
-ROLLOVER = 10 # Number of displayed data points
-
-
-source = ColumnDataSource({"x": [], "y": []})
-consumer = KafkaConsumer('CleanSensorData', auto_offset_reset='earliest',bootstrap_servers=['localhost:9092'], consumer_timeout_ms=1000)
-div = Div(
-    text='',
-    width=120,
-    height=35
+# Kafka Configuration
+consumer = KafkaConsumer(
+    'transactions',  # Your Kafka topic
+    bootstrap_servers=['localhost:9092'],
+    auto_offset_reset='earliest',
+    value_deserializer=lambda m: json.loads(m.decode('utf-8'))
 )
 
+# Bokeh Configuration
+UPDATE_INTERVAL = 1000
+ROLLOVER = 10
 
+source = ColumnDataSource({"x": [], "y": []})
+div = Div(text='', width=120, height=35)
 
-@count()
-def update(x):
+# Function to update data from Kafka
+def update():
     for msg in consumer:
-        msg_value=msg
-        break
-    values=ast.literal_eval(msg_value.value.decode("utf-8"))
-    x=((values["TimeStamp"]["$date"])/1000.0)
-    x=datetime.fromtimestamp(x, tz).isoformat()
-    x=pd.to_datetime(x)
-   
-    print(x)
+        value = msg.value
+        date_str = value['Date']  # Extract date as string
+        x = pd.to_datetime(date_str)  # Convert to Pandas datetime
+        y = value['Price']       # Extract price
 
-    div.text = "TimeStamp: "+str(x)
+        div.text = f"Date: {x.strftime('%Y-%m-%d')}"
 
+        source.stream({"x": [x], "y": [y]}, ROLLOVER)
+        break  # Process only one message per update
 
-    y = values['WaterTemperature']
-    print(y)
-    
-    source.stream({"x": [x], "y": [y]},ROLLOVER)
+# Bokeh Plot Configuration
+p = figure(
+    title="E-commerce Transactions",
+    x_axis_type="datetime",
+    width=1000,  # Use 'width' instead of 'plot_width'
+    y_axis_label="Price"
+)
 
-p = figure(title="Water Temperature Sensor Data",x_axis_type = "datetime",plot_width=1000)
+# Customize appearance
 p.line("x", "y", source=source)
+p.xaxis.formatter = DatetimeTickFormatter(
+    days="%Y-%m-%d", months="%Y-%m-%d", years="%Y-%m-%d"
+)
 
-p.xaxis.formatter=DatetimeTickFormatter(hourmin = ['%H:%M'])
-p.xaxis.axis_label = 'Time'
-p.yaxis.axis_label = 'Value'
+p.xaxis.major_label_orientation = "vertical"
 p.title.align = "right"
 p.title.text_color = "orange"
 p.title.text_font_size = "25px"
 
+# Create the Bokeh Document
 doc = curdoc()
-#doc.add_root(p)
-
-doc.add_root(
-    row(children=[div,p])
-)
+doc.add_root(row(children=[div, p]))
 doc.add_periodic_callback(update, UPDATE_INTERVAL)
