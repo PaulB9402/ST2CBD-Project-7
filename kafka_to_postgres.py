@@ -47,6 +47,7 @@ try:
         .option("kafka.bootstrap.servers", "localhost:9092") \
         .option("subscribe", "transactions") \
         .option("startingOffsets", "earliest") \
+        .option("failOnDataLoss", "false") \
         .load()
     logger.info("Kafka stream loaded successfully")
 except Exception as e:
@@ -56,6 +57,7 @@ except Exception as e:
 # Deserialize JSON data
 df = df.selectExpr("CAST(value AS STRING) as json")
 df = df.select(from_json(col("json"), schema).alias("data")).select("data.*")
+
 
 def foreach_batch_function(df, epoch_id):
     try:
@@ -94,6 +96,7 @@ def foreach_batch_function(df, epoch_id):
         logger.info("Batch processed successfully")
     except Exception as e:
         logger.error(f"Error processing batch: {e}")
+
 
 # Write stream to PostgreSQL
 try:

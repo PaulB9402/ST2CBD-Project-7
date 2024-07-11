@@ -13,7 +13,7 @@ file_path = r'C:\Users\drnru\Downloads\archive\my_e_commerce_data_set.csv'
 # Batch Size and Other Parameters
 batch_size = 1000
 sleep_interval = 1
-row_limit = 100000
+row_limit = 160
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
